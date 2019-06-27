@@ -22,7 +22,9 @@ Route::get('/master2', function () {
     return view('layer_custom.master');
 });
 
-Route::group(['prefix' => 'bac_si'],function(){
+Route::group(['prefix' => 'bac_si','middleware' => 'checkBacSi'],function(){
+	Route::get("logout","Controller@logout")
+	->name("logout");
 	Route::get('view_ngay_lam_viec','BacSiController@view_ngay_lam_viec')->name('view_ngay_lam_viec');
 	Route::get('get_calendar_ngay_lam_viec','BacSiController@get_calendar_ngay_lam_viec')->name('get_calendar_ngay_lam_viec');
 	Route::post('them_ngay_lam_viec','BacSiController@them_ngay_lam_viec')->name('them_ngay_lam_viec');
@@ -30,3 +32,5 @@ Route::group(['prefix' => 'bac_si'],function(){
 		Route::get('them/{ngay}','AjaxController@getThemLich');
 	});
 });
+Route::get("/view_login","Controller@view_login")->name("view_login");
+Route::post("process_login","Controller@process_login")->name("process_login");

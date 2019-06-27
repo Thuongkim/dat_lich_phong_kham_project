@@ -27,10 +27,10 @@
 </head>
 <body>
 
-<div class="wrapper">
-	<!-- Menu -->
-	@include('layer.menu')
-    <div class="main-panel">
+    <div class="wrapper">
+     <!-- Menu -->
+     @include('layer.menu')
+     <div class="main-panel">
         <!-- Header -->
         
         @include('layer.header')
@@ -40,6 +40,26 @@
                 <div class="row">
                     <div class="col-md-12">
                         <!-- Content -->
+                        @if (isset($errors)&&count($errors) > 0)
+                        <div class="alert alert-dismissable alert-danger">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            @foreach ($errors->all() as $error)
+                            <li><strong>{!! $error !!}</strong></li>
+                            @endforeach
+                        </div>
+                        @endif
+                        @if (session()->has('success'))
+                        <div class="alert alert-dismissable alert-success">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <strong>
+                                {!! session()->get('success') !!}
+                            </strong>
+                        </div>
+                        @endif
                         @yield('content')
                     </div>
                 </div>
@@ -54,12 +74,12 @@
 
 
 </body>
-    <!--   Core JS Files  -->
-    <script src="{{ asset('js/jsadmin/jquery.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/jsadmin/bootstrap.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/jsadmin/perfect-scrollbar.jquery.min.js') }}" type="text/javascript"></script>
+<!--   Core JS Files  -->
+<script src="{{ asset('js/jsadmin/jquery.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/jsadmin/bootstrap.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/jsadmin/perfect-scrollbar.jquery.min.js') }}" type="text/javascript"></script>
 
-    <!-- Light Bootstrap Dashboard Core javascript and methods -->
-    <script src="{{ asset('js/jsadmin/light-bootstrap-dashboard.js') }}"></script>
-    @stack('js')
+<!-- Light Bootstrap Dashboard Core javascript and methods -->
+<script src="{{ asset('js/jsadmin/light-bootstrap-dashboard.js') }}"></script>
+@stack('js')
 </html>

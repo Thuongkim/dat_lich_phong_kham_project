@@ -25,7 +25,7 @@
 
 				<a data-toggle="collapse" href="#collapseExample" class="collapsed">
 					<span>
-						Tania Andrew
+						{{Session::get('ten_bac_si')}}
                         <b class="caret"></b>
 					</span>
                 </a>
@@ -109,7 +109,7 @@
 					<div class="collapse" id="mapsExamples">
 						<ul class="nav">
 							<li>
-								<a href="maps/google.html">
+								<a href="{{ route('view_ngay_lam_viec') }}">
 									<span class="sidebar-mini">XBS</span>
 									<span class="sidebar-normal">Xem Bác Sĩ</span>
 								</a>
@@ -152,6 +152,11 @@
 							</li>
 						</ul>
 					</div>
+				</li>
+				<li>
+					<a  href="{{ route('logout') }}">
+                        <p>Đăng xuất</p>
+                    </a>
 				</li>
             </ul>
 	</div>
