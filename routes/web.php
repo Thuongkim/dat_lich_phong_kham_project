@@ -34,3 +34,11 @@ Route::group(['prefix' => 'bac_si','middleware' => 'checkBacSi'],function(){
 });
 Route::get("/view_login","Controller@view_login")->name("view_login");
 Route::post("process_login","Controller@process_login")->name("process_login");
+
+Route::group(['prefix'=>'khach_hang'],function(){
+	Route::get('dat_lich','KhachHangController@dat_lich')->name('dat_lich');
+});
+Route::get("dang_nhap","KhachHangController@dang_nhap")->name("dang_nhap");
+Route::get("dang_ki","KhachHangController@dang_ki")->name("dang_ki");
+
+

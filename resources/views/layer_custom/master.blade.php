@@ -12,7 +12,7 @@
     <title>Medilife - Health &amp; Medical Template | Home</title>
 
     <!-- Favicon  -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="icon" href="{{ asset('img/core-img/favicon.ico') }}">
 
     <!-- Style CSS -->
     <link rel="stylesheet" href="{{ asset('style.css') }}">
@@ -20,11 +20,21 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
     <script src="{{ asset('js/bootstrap-datepicker.vi.min.js') }}"></script>
-
+    @stack('css')
 </head>
 
 <body>
     @include('layer_custom.header')
+
+    <div class="medilife-book-an-appoinment-area">
+       <div class="container">
+         <div class="row">
+            <div class="col-12">
+                @yield('content')
+            </div>
+         </div>
+        </div>
+    </div>
 
     <!-- ***** Features Area Start ***** -->
     <div class="medilife-features-area section-padding-100">
@@ -32,15 +42,15 @@
             <div class="row align-items-center">
                 <div class="col-12 col-lg-6">
                     <div class="features-content">
-                        <h2>A new way to treat pacients in a revolutionary facility</h2>
+                       {{--  <h2>A new way to treat pacients in a revolutionary facility</h2>
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing eli.Lorem ipsum dolor sit amet, consec tetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer.</p>
-                        <a href="#" class="btn medilife-btn mt-50">View the services <span>+</span></a>
+                        <a href="#" class="btn medilife-btn mt-50">View the services <span>+</span></a> --}}
                     </div>
                 </div>
                 <div class="col-12 col-lg-6">
-                    <div class="features-thumbnail">
+                    {{-- <div class="features-thumbnail">
                         <img src="img/bg-img/medical1.png" alt="">
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -59,7 +69,7 @@
     <script src="{{ asset('js/plugins.js') }}"></script>
     <!-- Active js -->
     <script src="{{ asset('js/active.js') }}"></script>
-
+    @stack('js')
 
 </body>
 
