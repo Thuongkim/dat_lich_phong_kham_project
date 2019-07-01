@@ -4,92 +4,22 @@
 	<div class="row no-gutters align-items-center">
 		<div class="col-12 col-lg-9">
 			<div class="medilife-appointment-form">
-				<form action="#" method="post">
+				<form action="{{ route('process_login') }}" method="post">
+					{{ csrf_field() }}
 					<div class="row align-items-end">
-						<div class="col-12 col-md-4">
+						<div class="col-12 col-md-7">
 							<div class="form-group">
-								<select class="form-control" id="speciality">
-									<option>Speciality 1</option>
-									<option>Speciality 2</option>
-									<option>Speciality 3</option>
-									<option>Speciality 4</option>
-									<option>Speciality 5</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-12 col-md-4">
-							<div class="form-group">
-								<select class="form-control" id="doctors">
-									<option>Doctors 1</option>
-									<option>Doctors 2</option>
-									<option>Doctors 3</option>
-									<option>Doctors 4</option>
-									<option>Doctors 5</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-12 col-md-4">
-							<div class="form-group">
-								<input type="text" class="form-control" name="date" id="date" placeholder="Date" data-provide="datepicker">
-							</div>
-						</div>
-						<script type="text/javascript">
-							var date = new Date();
-							date.setDate(date.getDate());
-
-
-
-							$('#date').datepicker({ 
-								startDate: date,
-								todayBtn: "linked",
-								language: "vi",
-								todayHighlight: true,
-								orientation: "top right"
-							});
-						</script>
-
-						{{-- <div class="container">
-							<div class="row">
-								<div class='col-sm-6'>
-									<div class="form-group">
-										<div class='input-group date' id='datetimepicker1'>
-											<input type='text' class="form-control" />
-											<span class="input-group-addon">
-												<span class="glyphicon glyphicon-calendar"></span>
-											</span>
-										</div>
-									</div>
-								</div>
-								<script type="text/javascript">
-									$('#datetimepicker1').datepicker({ 
-										startDate: date
-									});
-								</script>
-							</div>
-						</div> --}}
-						<div class="col-12 col-md-4">
-							<div class="form-group">
-								<input type="text" class="form-control border-top-0 border-right-0 border-left-0" name="name" id="name" placeholder="Name">
-							</div>
-						</div>
-						<div class="col-12 col-md-4">
-							<div class="form-group">
-								<input type="text" class="form-control border-top-0 border-right-0 border-left-0" name="number" id="number" placeholder="Phone">
-							</div>
-						</div>
-						<div class="col-12 col-md-4">
-							<div class="form-group">
-								<input type="email" class="form-control border-top-0 border-right-0 border-left-0" name="email" id="email" placeholder="E-mail">
+								<input type="email" class="form-control" name="email" value="{{ old('email') }}" id="email" placeholder="E-mail">
 							</div>
 						</div>
 						<div class="col-12 col-md-7">
-							<div class="form-group mb-0">
-								<textarea name="message" class="form-control mb-0 border-top-0 border-right-0 border-left-0" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+							<div class="form-group">
+								<input type="password" class="form-control" name="mat_khau" id="mat_khau" placeholder="Mật Khẩu">
 							</div>
 						</div>
-						<div class="col-12 col-md-5 mb-0">
+						<div class="col-12 col-md-12 mb-0">
 							<div class="form-group mb-0">
-								<button type="submit" class="btn medilife-btn">Make an Appointment <span>+</span></button>
+								<button type="submit" class="btn medilife-btn">Đăng Nhập<span>+</span></button>
 							</div>
 						</div>
 					</div>

@@ -41,12 +41,16 @@ class BacSiController extends Controller
     public function them_ngay_lam_viec()
     {
       try {
-        $ngay_lam_viec = new NgayLamViec();
-        $ngay_lam_viec->ma_bac_si = Session::get('ma_bac_si');;
-        $ngay_lam_viec->ma_ca = Request::post('ma_ca');
-        $ngay_lam_viec->ngay =  Request::post('ngay');
-        $ngay_lam_viec->insert();
-
+        $today = date("Y-m-d");
+        $day =  Request::post('ngay');
+        $k = ($day > $today);
+        if ($day > $today) {
+          $ngay_lam_viec            = new NgayLamViec();
+          $ngay_lam_viec->ma_bac_si = Session::get('ma_bac_si');;
+          $ngay_lam_viec->ma_ca     = Request::post('ma_ca');
+          $ngay_lam_viec->ngay      =  Request::post('ngay');
+          $ngay_lam_viec->insert();
+        }
         return view('bac_si.view_ngay_lam_viec');
       } catch (Exception $e) {
         return redirect()->route('view_ngay_lam_viec')->withErrors(['whateverfieldname'=>'Thêm lỗi, hoặc trùng, vui lòng kiểm tra lại']);

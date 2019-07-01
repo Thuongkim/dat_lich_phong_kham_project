@@ -20,7 +20,6 @@ class KhachHang extends Migration
             $table->string('email',100)->unique();
             $table->date('ngay_sinh');
             $table->string('dia_chi');
-            $table->text('ghi_chu');
             $table->string('mat_khau');
             $table->boolean('gioi_tinh');
         });

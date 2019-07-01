@@ -17,9 +17,7 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="{{ asset('style.css') }}">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css">
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
-    <script src="{{ asset('js/bootstrap-datepicker.vi.min.js') }}"></script>
+    
     @stack('css')
 </head>
 
@@ -27,21 +25,41 @@
     @include('layer_custom.header')
 
     <div class="medilife-book-an-appoinment-area">
-       <div class="container">
-         <div class="row">
-            <div class="col-12">
-                @yield('content')
+     <div class="container">
+       <div class="row">
+        <div class="col-12">
+            @if (isset($errors)&&count($errors) > 0)
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                @foreach ($errors->all() as $error)
+                <li><strong>{!! $error !!}</strong></li>
+                @endforeach
             </div>
-         </div>
+            @endif
+            @if (session()->has('success'))
+            <div class="alert alert-dismissable alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>
+                    {!! session()->get('success') !!}
+                </strong>
+            </div>
+            @endif
+            @yield('content')
         </div>
     </div>
+</div>
+</div>
 
-    <!-- ***** Features Area Start ***** -->
-    <div class="medilife-features-area section-padding-100">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-12 col-lg-6">
-                    <div class="features-content">
+<!-- ***** Features Area Start ***** -->
+<div class="medilife-features-area section-padding-100">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-6">
+                <div class="features-content">
                        {{--  <h2>A new way to treat pacients in a revolutionary facility</h2>
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing eli.Lorem ipsum dolor sit amet, consec tetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer.</p>
                         <a href="#" class="btn medilife-btn mt-50">View the services <span>+</span></a> --}}
@@ -58,6 +76,11 @@
     <!-- ***** Features Area End ***** -->
 
     @include('layer_custom.footer')
+    
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+    <script src="{{ asset('js/bootstrap-datepicker.vi.min.js') }}"></script>
+    @stack('js')
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
     <script src="{{ asset('js/jquery/jquery-2.2.4.min.js') }}"></script>
@@ -69,7 +92,7 @@
     <script src="{{ asset('js/plugins.js') }}"></script>
     <!-- Active js -->
     <script src="{{ asset('js/active.js') }}"></script>
-    @stack('js')
+    
 
 </body>
 

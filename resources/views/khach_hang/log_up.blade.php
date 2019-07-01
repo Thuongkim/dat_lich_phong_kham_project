@@ -4,92 +4,60 @@
 	<div class="row no-gutters align-items-center">
 		<div class="col-12 col-lg-9">
 			<div class="medilife-appointment-form">
-				<form action="#" method="post">
+				<form action="{{ route('process_logup') }}" method="post">
+					{{ csrf_field()}}
 					<div class="row align-items-end">
-						<div class="col-12 col-md-4">
-							<div class="form-group">
-								<select class="form-control" id="speciality">
-									<option>Speciality 1</option>
-									<option>Speciality 2</option>
-									<option>Speciality 3</option>
-									<option>Speciality 4</option>
-									<option>Speciality 5</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-12 col-md-4">
-							<div class="form-group">
-								<select class="form-control" id="doctors">
-									<option>Doctors 1</option>
-									<option>Doctors 2</option>
-									<option>Doctors 3</option>
-									<option>Doctors 4</option>
-									<option>Doctors 5</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-12 col-md-4">
-							<div class="form-group">
-								<input type="text" class="form-control" name="date" id="date" placeholder="Date" data-provide="datepicker">
-							</div>
-						</div>
-						<script type="text/javascript">
-							var date = new Date();
-							date.setDate(date.getDate());
 
-
-
-							$('#date').datepicker({ 
-								startDate: date,
-								todayBtn: "linked",
-								language: "vi",
-								todayHighlight: true,
-								orientation: "top right"
-							});
-						</script>
-
-						{{-- <div class="container">
-							<div class="row">
-								<div class='col-sm-6'>
-									<div class="form-group">
-										<div class='input-group date' id='datetimepicker1'>
-											<input type='text' class="form-control" />
-											<span class="input-group-addon">
-												<span class="glyphicon glyphicon-calendar"></span>
-											</span>
-										</div>
-									</div>
-								</div>
-								<script type="text/javascript">
-									$('#datetimepicker1').datepicker({ 
-										startDate: date
-									});
-								</script>
-							</div>
-						</div> --}}
 						<div class="col-12 col-md-4">
 							<div class="form-group">
-								<input type="text" class="form-control border-top-0 border-right-0 border-left-0" name="name" id="name" placeholder="Name">
+								<input type="text" class="form-control border-top-0 border-right-0 border-left-0" name="ten" id="name" value="{{ old('ten') }}"placeholder="Họ Tên">
 							</div>
 						</div>
 						<div class="col-12 col-md-4">
 							<div class="form-group">
-								<input type="text" class="form-control border-top-0 border-right-0 border-left-0" name="number" id="number" placeholder="Phone">
+								<input type="text" class="form-control border-top-0 border-right-0 border-left-0" name="sdt" id="number"
+								value="{{ old('sdt') }}" placeholder="SĐT">
 							</div>
 						</div>
 						<div class="col-12 col-md-4">
 							<div class="form-group">
-								<input type="email" class="form-control border-top-0 border-right-0 border-left-0" name="email" id="email" placeholder="E-mail">
+								<input type="email" class="form-control border-top-0 border-right-0 border-left-0" name="email" value="{{ old('email') }}" id="email" placeholder="E-mail">
+							</div>
+						</div>
+						<div class="col-12 col-md-6">
+							<div class="form-group">
+								<input type="text" class="form-control" name="ngay_sinh" value="{{ old('ngay_sinh') }}" id="date" placeholder="Ngày Sinh" data-provide="datepicker">
+							</div>
+						</div>
+						<div class="col-12 col-md-6" style="color: #868e96">
+							Giới Tính 
+							<div class=" col-3 col-md-3 offset-md-1 form-group form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="gioi_tinh" id="inlineRadio1" value="1" checked>
+								<label class="form-check-label" for="inlineRadio1">Nam</label>
+							</div>
+							<div class="form-group form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="gioi_tinh" id="inlineRadio2" value="2">
+								<label class="form-check-label" for="inlineRadio2">Nữ</label>
+							</div>
+						</div>
+						<div class="col-12 col-md-6">
+							<div class="form-group">
+								<input type="password" class="form-control" name="mat_khau" id="mat_khau" placeholder="Mật Khẩu">
+							</div>
+						</div>
+						<div class="col-12 col-md-6">
+							<div class="form-group">
+								<input type="password" class="form-control" name="mat_khau_nhap_lai" id="mat_khau_nhap_lai" placeholder="Nhập Lại Mật Khẩu" >
 							</div>
 						</div>
 						<div class="col-12 col-md-7">
 							<div class="form-group mb-0">
-								<textarea name="message" class="form-control mb-0 border-top-0 border-right-0 border-left-0" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+								<textarea class="form-control mb-0 border-top-0 border-right-0 border-left-0" name="dia_chi" value="{{ old('dia_chi') }}" cols="30" rows="10" placeholder="Địa chỉ"></textarea>
 							</div>
 						</div>
 						<div class="col-12 col-md-5 mb-0">
 							<div class="form-group mb-0">
-								<button type="submit" class="btn medilife-btn">Make an Appointment <span>+</span></button>
+								<button type="submit" class="btn medilife-btn">Đăng Kí <span>+</span></button>
 							</div>
 						</div>
 					</div>
@@ -118,3 +86,14 @@
 	</div>
 </div>
 @endsection
+@push('js')
+<script type="text/javascript">
+	$('#date').datepicker({ 
+		todayBtn: "linked",
+		language: "vi",
+		todayHighlight: true,
+		orientation: "top right",
+		format: "yyyy-mm-dd",
+	});
+</script>
+@endpush

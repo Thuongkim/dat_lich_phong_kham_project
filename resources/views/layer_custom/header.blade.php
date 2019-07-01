@@ -38,11 +38,18 @@
                                         <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
                                     </li>
                                     <li class="nav-item dropdown">
+                                        @if(session()->has('ten_khach_hang'))
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Session::get('ten_khach_hang') }}</a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="{{ route('dang_xuat') }}">Đăng xuất</a>
+                                        </div>
+                                        @else
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Đăng nhập/Đăng kí</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <a class="dropdown-item" href="{{ route('dang_ki') }}">Đăng kí</a>
                                             <a class="dropdown-item" href="{{ route('dang_nhap') }}">Đăng nhập</a>
                                         </div>
+                                        @endif
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="about-us.html">About Us</a>

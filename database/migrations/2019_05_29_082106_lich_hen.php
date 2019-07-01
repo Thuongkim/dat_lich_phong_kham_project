@@ -19,6 +19,7 @@ class LichHen extends Migration
             $table->date('ngay');
             $table->integer('ma_ca')->unsigned();
             $table->integer('trang_thai');
+            $table->text('ghi_chu');
 
             $table->foreign('ma_khach_hang')->references('ma_khach_hang')->on('khach_hang');
             $table->foreign('ma_bac_si')->references('ma_bac_si')->on('bac_si');

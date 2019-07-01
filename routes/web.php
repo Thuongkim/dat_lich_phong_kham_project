@@ -40,5 +40,9 @@ Route::group(['prefix'=>'khach_hang'],function(){
 });
 Route::get("dang_nhap","KhachHangController@dang_nhap")->name("dang_nhap");
 Route::get("dang_ki","KhachHangController@dang_ki")->name("dang_ki");
+Route::post("process_logup","KhachHangController@process_logup")->name("process_logup");
+Route::post("process_login","KhachHangController@process_login_khach_hang")->name("process_login");
+
+Route::get("dang_xuat","KhachHangController@logout")->name("dang_xuat");
 
 
