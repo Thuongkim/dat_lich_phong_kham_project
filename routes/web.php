@@ -36,6 +36,10 @@ Route::get("/view_login","Controller@view_login")->name("view_login");
 Route::post("process_login","Controller@process_login")->name("process_login");
 
 Route::group(['prefix'=>'khach_hang'],function(){
+	Route::group(['prefix' => 'ajax'],function(){
+		Route::get('getBacSiByDate/{date}','AjaxController@getBacSiByDate');
+		Route::get('getBacSiByCa/{maCa}/{date}','AjaxController@getBacSiByCa');
+	});
 	Route::get('dat_lich','KhachHangController@dat_lich')->name('dat_lich');
 });
 Route::get("dang_nhap","KhachHangController@dang_nhap")->name("dang_nhap");
@@ -44,5 +48,4 @@ Route::post("process_logup","KhachHangController@process_logup")->name("process_
 Route::post("process_login","KhachHangController@process_login_khach_hang")->name("process_login");
 
 Route::get("dang_xuat","KhachHangController@logout")->name("dang_xuat");
-
 

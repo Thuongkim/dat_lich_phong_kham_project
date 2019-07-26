@@ -2,12 +2,12 @@
 
 namespace App;
 
-use App\BacSi;
 use Illuminate\Database\Eloquent\Model;
+use App\BacSi;
 
-class Ca extends Model
+class NgayLam extends Model
 {
-    protected $table = "ca";
+    protected $table = "ngay_lam_viec";
     function bac_si(){
     	return $this->belongsTo("App\BacSi","ma_bac_si","ma_bac_si");
     }

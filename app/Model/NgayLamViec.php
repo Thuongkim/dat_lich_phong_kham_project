@@ -33,5 +33,6 @@ class NgayLamViec
     	$ngay = DB::select("select count(*) as ngay from $this->table where ngay > DATE(NOW() + INTERVAL (6 - WEEKDAY(NOW())) DAY)");
     	return $ngay;
     }
+    
 }
 ?>

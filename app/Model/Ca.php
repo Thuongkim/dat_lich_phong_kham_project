@@ -18,5 +18,11 @@ class Ca
 			]);
 		return $ca;
 	}
+
+	public function selectCa()
+	{
+		$array = DB::select("select * from $this->table");
+		return $array;
+	}
 }
 ?>

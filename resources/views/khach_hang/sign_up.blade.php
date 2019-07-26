@@ -8,28 +8,24 @@
 					<div class="row align-items-end">
 						<div class="col-12 col-md-4">
 							<div class="form-group">
-								<input type="text" class="form-control" name="date" id="date" placeholder="Ngày Hẹn" data-provide="datepicker">
+								<input type="text" onchange="getDate()" class="form-control" name="date" id="date" placeholder="Ngày Hẹn" data-provide="datepicker">
 							</div>
 						</div>
 						<div class="col-12 col-md-4">
-							<div class="form-group">
-								<select class="form-control" id="Ca làm việc">
-									<option>Speciality 1</option>
-									<option>Speciality 2</option>
-									<option>Speciality 3</option>
-									<option>Speciality 4</option>
-									<option>Speciality 5</option>
+							<div id="main_ca" class="form-group">
+								<select onchange="byCa()" disabled class="form-control" id="ca" name="ca">
+									@foreach($array_ca as $ca)
+									<option value="{{$ca->ma_ca}}">{{ $ca->gio_bat_dau }}-{{ $ca->gio_ket_thuc }}</option>
+									@endforeach
 								</select>
 							</div>
 						</div>
 						<div class="col-12 col-md-4">
-							<div class="form-group">
-								<select class="form-control" id="Bác Sĩ">
-									<option>Doctors 1</option>
-									<option>Doctors 2</option>
-									<option>Doctors 3</option>
-									<option>Doctors 4</option>
-									<option>Doctors 5</option>
+							<div id="main_bac_si" class="form-group">
+								<select class="form-control" name="bac_si">
+									@foreach($bac_si as $value)
+									<option value="{{$value->ma_bac_si}}">{{ $value->ten_bac_si }}</option>
+									@endforeach
 								</select>
 							</div>
 						</div>
@@ -73,9 +69,6 @@
 <script type="text/javascript">
 	var date = new Date();
 	date.setDate(date.getDate());
-
-
-
 	$('#date').datepicker({ 
 		startDate: date,
 		todayBtn: "linked",
@@ -84,5 +77,33 @@
 		orientation: "top right",
 		format: "yyyy-mm-dd",
 	});
+	function getDate(){
+		var date = $('#date').val();
+		// if(date!=""){
+		// 	$("#ca").removeAttr("disabled");
+		// }else{
+		// 	$("#ca").attr("disabled","");
+		// }
+		$("#ca").removeAttr("disabled");
+		// $('#date').change(function(){
+		// 	if($(this).is(':selected')){
+		// 		$("#ca").removeAttr("disabled");
+		// 	}else{
+		// 		$("#ca").attr("disabled","");
+		// 	}
+		// });	
+		$.get("ajax/getBacSiByDate/"+date,function(data){
+			$("#main_bac_si").html(data);			
+		});
+	};
+	function byCa(){
+		var maCa = $('#ca').val();
+		var date = $('#date').val();
+		$.get("ajax/getBacSiByCa/"+maCa+"/"+date,function(data){
+			$("#main_bac_si").html(data);
+		});
+	};
+	
+
 </script>
 @endpush

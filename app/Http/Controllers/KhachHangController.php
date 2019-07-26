@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers;
 use App\Model\KhachHang;
+use App\Model\Ca;
 use Illuminate\Http\Request;
 use Validator;
 use Session;
+use App\BacSi;
 
 
 class KhachHangController extends Controller
 {
 	function dat_lich(){
-		return view('khach_hang.sign_up');
+		$ca = new Ca();
+		$ca = $ca->selectCa();
+		$bac_si = BacSi::all();
+		return view('khach_hang.sign_up',['array_ca'=>$ca,"bac_si"=>$bac_si]);
 	}
 
 	function dang_nhap(){
