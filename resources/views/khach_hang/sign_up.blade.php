@@ -4,28 +4,33 @@
 	<div class="row no-gutters align-items-center">
 		<div class="col-12 col-lg-9">
 			<div class="medilife-appointment-form">
-				<form action="#" method="post">
+				<form action="{{ route('lich_hen') }}" method="post">
+					@csrf
 					<div class="row align-items-end">
 						<div class="col-12 col-md-4">
-							<div class="form-group">
+							<div id="main_date" class="form-group">
 								<input type="text" onchange="getDate()" class="form-control" name="date" id="date" placeholder="Ngày Hẹn" data-provide="datepicker">
 							</div>
 						</div>
 						<div class="col-12 col-md-4">
-							<div id="main_ca" class="form-group">
-								<select onchange="byCa()" disabled class="form-control" id="ca" name="ca">
-									@foreach($array_ca as $ca)
-									<option value="{{$ca->ma_ca}}">{{ $ca->gio_bat_dau }}-{{ $ca->gio_ket_thuc }}</option>
+							<div class="form-group">
+								<select id="main_ca" onchange="byCa()" class="form-control" name="ca">
+									@if ($array_ca)
+									@foreach($array_ca as $value)
+									<option value="{{$value->ma_ca}}">{{ $value->gio_bat_dau }}-{{$value->gio_ket_thuc}}</option>
 									@endforeach
+									@endif
 								</select>
 							</div>
 						</div>
 						<div class="col-12 col-md-4">
 							<div id="main_bac_si" class="form-group">
-								<select class="form-control" name="bac_si">
+								<select id="maBacSi" class="form-control" name="bac_si">
+									@if ($bac_si)
 									@foreach($bac_si as $value)
 									<option value="{{$value->ma_bac_si}}">{{ $value->ten_bac_si }}</option>
 									@endforeach
+									@endif
 								</select>
 							</div>
 						</div>
@@ -77,30 +82,48 @@
 		orientation: "top right",
 		format: "yyyy-mm-dd",
 	});
+
+	$('#main_bac_si').click(function(){
+		var maBacSi = $('#maBacSi').val();
+		var maCa = $('#main_ca').val();
+		// $.get("ajax/getCaByDoctorId/"+maBacSi,function(data){
+		// 	$("#main_date").html(data);				
+		// });	
+		$.get("ajax/getDateByDoctorId/"+maBacSi+"/"+maCa,function(data){
+			$("#main_date").html(data);	
+		});	
+	});
+
 	function getDate(){
 		var date = $('#date').val();
 		// if(date!=""){
-		// 	$("#ca").removeAttr("disabled");
+		// 	$("#main_ca").removeAttr("disabled");
 		// }else{
-		// 	$("#ca").attr("disabled","");
+		// 	$("#main_ca").attr("disabled","");
 		// }
-		$("#ca").removeAttr("disabled");
+		// $("#main_ca").removeAttr("disabled");
 		// $('#date').change(function(){
 		// 	if($(this).is(':selected')){
-		// 		$("#ca").removeAttr("disabled");
+		// 		$("#main_ca").removeAttr("disabled");
 		// 	}else{
-		// 		$("#ca").attr("disabled","");
+		// 		$("#main_ca").attr("disabled","");
 		// 	}
 		// });	
 		$.get("ajax/getBacSiByDate/"+date,function(data){
 			$("#main_bac_si").html(data);			
 		});
 	};
+	// function byCa(){
+	// 	var maCa = $('#main_ca').val();
+	// 	var date = $('#date').val();
+	// 	$.get("ajax/getBacSiByCa/"+maCa+"/"+date,function(data){
+	// 		$("#main_bac_si").html(data);
+	// 	});
+	// };
 	function byCa(){
-		var maCa = $('#ca').val();
-		var date = $('#date').val();
-		$.get("ajax/getBacSiByCa/"+maCa+"/"+date,function(data){
-			$("#main_bac_si").html(data);
+		var maCa = $('#main_ca').val();
+		$.get("ajax/getBacSiByCaId/"+maCa,function(data){
+			$("#maBacSi").html(data);
 		});
 	};
 	

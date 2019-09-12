@@ -11,4 +11,7 @@ class NgayLam extends Model
     function bac_si(){
     	return $this->belongsTo("App\BacSi","ma_bac_si","ma_bac_si");
     }
+    function ca(){
+    	return $this->hasMany("App\Ca","ma_ca","ma_ca");
+    }
 }
