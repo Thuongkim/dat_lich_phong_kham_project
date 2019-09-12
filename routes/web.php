@@ -33,14 +33,18 @@ Route::group(['prefix' => 'bac_si','middleware' => 'checkBacSi'],function(){
 	});
 });
 Route::get("/view_login","Controller@view_login")->name("view_login");
-Route::post("process_login","Controller@process_login")->name("process_login");
+Route::post("process_login_doctor","Controller@process_login")->name("process_login_doctor");
 
 Route::group(['prefix'=>'khach_hang'],function(){
 	Route::group(['prefix' => 'ajax'],function(){
 		Route::get('getBacSiByDate/{date}','AjaxController@getBacSiByDate');
 		Route::get('getBacSiByCa/{maCa}/{date}','AjaxController@getBacSiByCa');
+		Route::get('getDateByDoctorId/{maBacSi}/{maCa}','AjaxController@getDateByDoctorId');
+		Route::get('getCaByDoctorId/{maBacSi}','AjaxController@getCaByDoctorId');
+		Route::get('getBacSiByCaId/{maCa}','AjaxController@getBacSiByCaId');
 	});
 	Route::get('dat_lich','KhachHangController@dat_lich')->name('dat_lich');
+	Route::post('lich_hen','LichHenController@create')->name('lich_hen');
 });
 Route::get("dang_nhap","KhachHangController@dang_nhap")->name("dang_nhap");
 Route::get("dang_ki","KhachHangController@dang_ki")->name("dang_ki");

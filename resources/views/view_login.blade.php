@@ -58,7 +58,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-                        <form method="post" action="{{route('process_login')}}">
+                        <form method="post" action="{{route('process_login_doctor')}}">
                             {{csrf_field()}}
                         <!--   if you want to have the card without animation please remove the ".card-hidden" class   -->
                             <div class="card">
