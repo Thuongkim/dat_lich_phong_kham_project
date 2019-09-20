@@ -28,9 +28,9 @@ class NgayLamViec
                 $this->ma_ca
             ]);
     }
-    public function get_ngay_lam_viec()
+    public function get_ngay_lam_viec($ma_bac_si)
     {
-    	$ngay = DB::select("select count(*) as ngay from $this->table where ngay > DATE(NOW() + INTERVAL (6 - WEEKDAY(NOW())) DAY)");
+    	$ngay = DB::select("select count(*) as ngay from $this->table where ma_bac_si = $ma_bac_si and ngay > DATE(NOW() + INTERVAL (6 - WEEKDAY(NOW())) DAY)");
     	return $ngay;
     }
     

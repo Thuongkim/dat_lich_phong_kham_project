@@ -25,7 +25,11 @@
 
 				<a data-toggle="collapse" href="#collapseExample" class="collapsed">
 					<span>
+						@if(Session::has('ten_admin'))
+						{{Session::get('ten_admin')}}
+						@elseif(Session::has('ten_bac_si'))
 						{{Session::get('ten_bac_si')}}
+						@endif
                         <b class="caret"></b>
 					</span>
                 </a>
@@ -68,7 +72,7 @@
                     <div class="collapse" id="componentsExamples">
                         <ul class="nav">
                             <li>
-								<a href="{{-- {{route('view_all_admin')}} --}}">
+								<a href="{{route('view_all_admin')}}">
 									<span class="sidebar-normal">Xem admin</span>
 								</a>
 							</li>
@@ -85,17 +89,16 @@
 					<div class="collapse" id="tablesExamples">
 						<ul class="nav">
 							<li>
-								<a href="tables/regular.html">
-									<span class="sidebar-mini">RT</span>
+								<a href="{{ route('view_all_khach_hang') }}">
 									<span class="sidebar-normal">Xem Khách Hàng</span>
 								</a>
 							</li>
-							<li>
+							{{-- <li>
 								<a href="tables/extended.html">
 									<span class="sidebar-mini">ET</span>
 									<span class="sidebar-normal">Khách hàng bị cấm</span>
 								</a>
-							</li>
+							</li> --}}
 						</ul>
 					</div>
 				</li>
@@ -109,9 +112,13 @@
 					<div class="collapse" id="mapsExamples">
 						<ul class="nav">
 							<li>
-								<a href="{{ route('view_ngay_lam_viec') }}">
-									<span class="sidebar-mini">XBS</span>
+								<a href="{{ route('view_all_bac_si') }}">
 									<span class="sidebar-normal">Xem Bác Sĩ</span>
+								</a>
+							</li>
+							<li>
+								<a href="{{ route('view_ngay_lam_viec') }}">
+									<span class="sidebar-normal">Ngày làm việc</span>
 								</a>
 							</li>
 						</ul>
@@ -127,8 +134,7 @@
 					<div class="collapse" id="pagesExamples">
 						<ul class="nav">
 							<li>
-								<a href="pages/user.html">
-									<span class="sidebar-mini">UP</span>
+								<a href="{{ route('view_ca_lam_viec') }}">
 									<span class="sidebar-normal">Xem Ca Làm Việc</span>
 								</a>
 							</li>
@@ -145,9 +151,8 @@
 					<div class="collapse" id="formsExamples">
 						<ul class="nav">
 							<li>
-								<a href="forms/regular.html">
-									<span class="sidebar-mini">Rf</span>
-									<span class="sidebar-normal">Xem Lịch Hẹn</span>
+								<a href="{{ route('view_all_lich_hen') }}">
+									<span class="sidebar-normal">Lịch hẹn chưa duyệt</span>
 								</a>
 							</li>
 						</ul>

@@ -20,6 +20,13 @@ class KhachHang
         return $array;
     }
 
+    public function get_khach_hang()
+    {
+        $array = DB::select("select * from khach_hang where ma_khach_hang = ?
+            limit 1",[ $this->ma_khach_hang]     );
+        return $array[0];
+    }
+
 	public function kiem_tra()
 	{
 		$kiem_tra = DB::select("select count(*) as kiem_tra from $this->table where email = ? and sdt = ? ",
@@ -39,6 +46,39 @@ class KhachHang
                 $this->gioi_tinh,
                 $this->dia_chi,
                 $this->mat_khau
+            ]);
+    }
+
+    public function view_all()
+    {
+        $array = DB::select("select * from $this->table");
+        return $array;
+    }
+
+    public function delete()
+    {
+        DB::delete("delete from khach_hang
+            where ma_khach_hang = ?",[ $this->ma_khach_hang]);
+    }
+
+     public function update()
+    {
+        DB::update("update khach_hang
+            set
+            ten_khach_hang = ?,
+            sdt = ?,
+            email = ?,
+            dia_chi = ?,
+            mat_khau = ?,
+            gioi_tinh = ?
+            where ma_khach_hang = ?",[
+                $this->ten_khach_hang,
+                $this->sdt,
+                $this->email,
+                $this->dia_chi,
+                $this->mat_khau,
+                $this->gioi_tinh,
+                $this->ma_khach_hang
             ]);
     }
 }

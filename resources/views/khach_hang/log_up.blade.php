@@ -52,7 +52,7 @@
 						</div>
 						<div class="col-12 col-md-7">
 							<div class="form-group mb-0">
-								<textarea class="form-control mb-0 border-top-0 border-right-0 border-left-0" name="dia_chi" value="{{ old('dia_chi') }}" cols="30" rows="10" placeholder="Địa chỉ"></textarea>
+								<textarea class="form-control mb-0 border-top-0 border-right-0 border-left-0" name="dia_chi" cols="30" rows="10" placeholder="Địa chỉ">{{ old('dia_chi') }}</textarea>
 							</div>
 						</div>
 						<div class="col-12 col-md-5 mb-0">
