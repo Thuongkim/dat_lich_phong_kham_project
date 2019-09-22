@@ -5,7 +5,7 @@
 	<link rel="icon" type="image/png" href="../../assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Light Bootstrap Dashboard PRO by Creative Tim</title>
+	<title>Login Admin</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -26,7 +26,7 @@
 <body>
 
 <nav class="navbar navbar-transparent navbar-absolute">
-    <div class="container">
+   {{--  <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
                 <span class="sr-only">Toggle navigation</span>
@@ -46,7 +46,7 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </div> --}}
 </nav>
 
 
@@ -98,7 +98,7 @@
             </div>
         </div>
 
-    	<footer class="footer footer-transparent">
+    	{{-- <footer class="footer footer-transparent">
             <div class="container">
                 <nav class="pull-left">
                     <ul>
@@ -128,7 +128,7 @@
                     &copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
                 </p>
             </div>
-        </footer>
+        </footer> --}}
 
     </div>
 
