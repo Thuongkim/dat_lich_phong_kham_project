@@ -4,18 +4,28 @@
 	<div class="row no-gutters align-items-center">
 		<div class="col-12 col-lg-9">
 			<div class="medilife-appointment-form">
+				<div class="row align-items-end">
+					<div class="col-12 col-md-12 mb-0">
+						<div class="form-group mb-0">
+							<button onclick="loc()" class="btn medilife-btn">Lọc</button>
+						</div>
+					</div>
+				</div>
+				<br>
 				<form action="{{ route('lich_hen') }}" method="post">
 					@csrf
 					<div class="row align-items-end">
 						<div class="col-12 col-md-4">
+							<input type="hidden" value="<?php date('Y-m-d') ?>" id="getDate">
 							<div id="main_date" class="form-group">
-								<input type="text" onchange="getDate()" class="form-control" name="date" id="date" placeholder="Ngày Hẹn" data-provide="datepicker">
+								<input id="date" value="<?php echo date('Y-m-d') ?>" type="text" class="form-control" name="date" data-provide="datepicker">
 							</div>
 						</div>
 						<div class="col-12 col-md-4">
 							<div class="form-group">
-								<select id="main_ca" onchange="byCa()" class="form-control" name="ca">
-									@if ($array_ca)
+								<select id="main_ca" class="form-control" name="ca">
+									<option selected disabled>chon ca</option>
+									@if (isset($array_ca))
 									@foreach($array_ca as $value)
 									<option value="{{$value->ma_ca}}">{{ $value->gio_bat_dau }}-{{$value->gio_ket_thuc}}</option>
 									@endforeach
@@ -25,8 +35,8 @@
 						</div>
 						<div class="col-12 col-md-4">
 							<div id="main_bac_si" class="form-group">
-								<select id="maBacSi" class="form-control" name="bac_si">
-									@if ($bac_si)
+								<select onchange="getNgay()" id="maBacSi" class="form-control" name="bac_si">
+									@if (isset($bac_si))
 									@foreach($bac_si as $value)
 									<option value="{{$value->ma_bac_si}}">{{ $value->ten_bac_si }}</option>
 									@endforeach
@@ -83,50 +93,55 @@
 		format: "yyyy-mm-dd",
 	});
 
-	$('#main_bac_si').click(function(){
-		var maBacSi = $('#maBacSi').val();
-		var maCa = $('#main_ca').val();
-		// $.get("ajax/getCaByDoctorId/"+maBacSi,function(data){
-		// 	$("#main_date").html(data);				
-		// });	
-		$.get("ajax/getDateByDoctorId/"+maBacSi+"/"+maCa,function(data){
-			$("#main_date").html(data);	
-		});	
-	});
+	function loc(){
+		var getDate = $("#getDate").val();
+		var date = $("#date").val();
+		var ca = $("#main_ca").val();
+		var maBacSi = $("#maBacSi").val();
 
-	function getDate(){
-		var date = $('#date').val();
-		// if(date!=""){
-		// 	$("#main_ca").removeAttr("disabled");
-		// }else{
-		// 	$("#main_ca").attr("disabled","");
+		if(date != getDate && ca == "all"){
+			//loc theo ngay
+			$.get("ajax/getBacSiByDate/"+date,function(data){
+				$("#main_bac_si").html(data);	
+			});
+		}else if(date != getDate && ca != "all"){
+			//loc theo ngay va ca
+			$.get("ajax/getBacSiByDateAndCa/"+date+"/"+ca,function(data){
+				$("#main_bac_si").html(data);	
+			});
+		}else if(date == getDate && ca != "all"){
+			//loc theo ca
+			$.get("ajax/getBacSiByCa/"+ca,function(data){
+				$("#main_bac_si").html(data);	
+			});
+		}
+		// else if(ca == null && maBacSi != null){
+		// 	$.get("ajax/getDateByDoctorId/"+maBacSi,function(data){
+		// 		$("#main_date").html(data);	
+		// 	});
+		// }else if(ca != null && maBacSi != null){
+		// 	$.get("ajax/getDateByDoctorIdAndCa/"+maBacSi+"/"+ca,function(data){
+		// 		$("#main_date").html(data);	
+		// 	});
 		// }
-		// $("#main_ca").removeAttr("disabled");
-		// $('#date').change(function(){
-		// 	if($(this).is(':selected')){
-		// 		$("#main_ca").removeAttr("disabled");
-		// 	}else{
-		// 		$("#main_ca").attr("disabled","");
-		// 	}
-		// });	
-		$.get("ajax/getBacSiByDate/"+date,function(data){
-			$("#main_bac_si").html(data);			
-		});
-	};
-	// function byCa(){
-	// 	var maCa = $('#main_ca').val();
-	// 	var date = $('#date').val();
-	// 	$.get("ajax/getBacSiByCa/"+maCa+"/"+date,function(data){
-	// 		$("#main_bac_si").html(data);
-	// 	});
-	// };
-	function byCa(){
-		var maCa = $('#main_ca').val();
-		$.get("ajax/getBacSiByCaId/"+maCa,function(data){
-			$("#maBacSi").html(data);
-		});
-	};
-	
+		else{
+			alert("ko ok");
+		}
+	}
+
+	function getNgay(){
+		var main_ca = $("#main_ca").val();
+		var maBacSi = $("#maBacSi").val();
+		if(main_ca == null){
+			$.get("ajax/getDateByDoctorId/"+maBacSi,function(data){
+				$("#main_date").html(data);	
+			});
+		}else{
+			$.get("ajax/getDateByDoctorIdAndCa/"+maBacSi+"/"+main_ca,function(data){
+				$("#main_date").html(data);	
+			});
+		}
+	}
 
 </script>
 @endpush

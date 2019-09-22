@@ -1,4 +1,4 @@
-<!-- Preloader -->
+{{-- Preloader --}}
 <div id="preloader">
     <div class="medilife-load"></div>
 </div>
@@ -35,7 +35,7 @@
                                 <!-- Menu Area -->
                                 <ul class="navbar-nav ml-auto">
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                                        <a class="nav-link" href="#">Trang chủ <span class="sr-only">(current)</span></a>
                                     </li>
                                     <li class="nav-item dropdown">
                                         @if(session()->has('ten_khach_hang'))
@@ -52,20 +52,23 @@
                                         @endif
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="about-us.html">About Us</a>
+                                        <a class="nav-link" href="{{ route('dat_lich') }}">Lên Lịch Hẹn</a>
                                     </li>
                                     <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('view_lich_hen') }}">Xem Lịch Hẹn</a>
+                                    </li>
+                                    {{-- <li class="nav-item">
                                         <a class="nav-link" href="services.html">Services</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="blog.html">News</a>
-                                    </li>
+                                    </li> --}}
                                     <li class="nav-item">
-                                        <a class="nav-link" href="contact.html">Contact</a>
+                                        <a class="nav-link" href="#">Liên Hệ</a>
                                     </li>
                                 </ul>
                                 <!-- Appointment Button -->
-                                <a href="#" class="btn medilife-appoint-btn ml-30">For <span>emergencies</span> Click here</a>
+                                {{-- <a href="#" class="btn medilife-appoint-btn ml-30">For <span>emergencies</span> Click here</a> --}}
                             </div>
                         </nav>
                     </div>
@@ -87,7 +90,7 @@
                         <div class="hero-slides-content">
                             <h2 data-animation="fadeInUp" data-delay="100ms">Medical Services that <br>You can Trust 100%</h2>
                             <h6 data-animation="fadeInUp" data-delay="400ms">Lorem ipsum dolor sit amet, consectetuer adipiscing elit sed diam nonummy nibh euismod.</h6>
-                            <a href="#" class="btn medilife-btn mt-50" data-animation="fadeInUp" data-delay="700ms">Discover Medifile <span>+</span></a>
+                            <a href="#" class="btn medilife-btn mt-50" data-animation="fadeInUp" data-delay="700ms">Medifile <span>+</span></a>
                         </div>
                     </div>
                 </div>

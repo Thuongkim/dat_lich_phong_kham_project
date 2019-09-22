@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Session;
 
-class checkBacSi
+class checkKhachHang
 {
     /**
      * Handle an incoming request.
@@ -16,9 +16,9 @@ class checkBacSi
      */
     public function handle($request, Closure $next)
     {
-        if (Session::has('ma_bac_si')) {
+        if (Session::has('ma_khach_hang')) {
             return $next($request);
         }
-        return redirect()->back();
+        return redirect()->route('dang_nhap')->withErrors(['whateverfieldname'=>'Bạn phải đăng nhập']);
     }
 }

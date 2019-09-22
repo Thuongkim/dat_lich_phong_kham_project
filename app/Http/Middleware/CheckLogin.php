@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Session;
 
-class checkBacSi
+class CheckLogin
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class checkBacSi
      */
     public function handle($request, Closure $next)
     {
-        if (Session::has('ma_bac_si')) {
+       if (Session::has('ma_admin')) {
             return $next($request);
         }
         return redirect()->back();
